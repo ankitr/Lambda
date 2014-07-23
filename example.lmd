@@ -1,0 +1,35 @@
+### The Identity Function ###
+I := λ x . x
+
+### Boolean operations ###
+T := λ x y . x
+F := λ x y . y
+& := λ x y . x y F
+| := λ x y . x T y
+! := λ x . x F T
+
+### Numbers ###
+0 := λ f x . x
+1 := λ f x . f x
+2 := λ f x . f (f x)
+3 := λ f x . f (f x)
+
+### Arithmetic ###
+S := λ n f x . f (n f x)
++ := λ n m f x . n f (m f x)
+* := λ n m x . n (m x)
+Φ := λ p z . z (S (p T)) (p T)
+P := (λ n . n (Φ (λ z . z 0 0))) F
+- := λ n m . n P m
+# TODO: division, exponentiation, ackermann
+
+### Comparisions ###
+≥ := λ x y . Z (- x y)
+≤ := λ x y . Z (- y x)
+= := λ x y . & (≥ x y) (≤ x y)
+≠ := λ x y . ! (= x y)
+> := λ x y . & (≥ x y) (≠ x y)
+< := λ x y . & (≤ x y) (≠ x y)
+
+### Y Combinator ###
+Y := λ y . (λ x . y (x x)) (λ x. y (x x))
